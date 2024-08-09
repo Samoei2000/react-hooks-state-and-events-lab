@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import ShoppingList from "./ShoppingList";
 import itemData from "../data/items";
 
 function App() {
+  // Step 2: Create a state variable for dark mode
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // replace 'false' with a state variable that can be toggled between true and false
-  // this will be used for the Dark Mode Toggle feature
-  const appClass = false ? "App dark" : "App light"
+  // Step 3: Update appClass based on the state
+  const appClass = isDarkMode ? "App dark" : "App light";
+
+  // Step 4: Toggle dark mode state when button is clicked
+  const handleDarkModeToggle = () => {
+    setIsDarkMode(prevMode => !prevMode);
+  };
 
   return (
     <div className={appClass}>
       <header>
         <h2>Shopster</h2>
-        <button>Dark Mode</button>
+        {/* Step 4: Add event handler to the button */}
+        <button onClick={handleDarkModeToggle}>
+          {isDarkMode ? "Light Mode" : "Dark Mode"}
+        </button>
       </header>
       <ShoppingList items={itemData} />
     </div>
